@@ -1,7 +1,9 @@
 const routes = [
+    {path: '/login', component: "@/pages/user/login"},
+    
     { 
         path: '/', 
-        component: '@/pages/index',
+        component: '@/layouts',
         routes: [
             {path: "/test", component: "@/pages/test"},
             {path: "/user", component: "@/pages/user"},

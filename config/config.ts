@@ -7,7 +7,7 @@ const { REACT_APP_ENV } = process.env;
 console.log("@@@@@@@@@@", REACT_APP_ENV)
 /*资料 https://v2.umijs.org/zh/config/#plugins */
 export default defineConfig({
-    base: '/docs/',
+    base: '/',
     publicPath: '/static/',
     hash: true,
     history: {

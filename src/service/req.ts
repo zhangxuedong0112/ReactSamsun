@@ -8,7 +8,7 @@ import NProgress from 'nprogress';
 const env = process.env.REACT_APP_ENV || "dev";
 const development = env == "dev"
 
-// @bindAll()
+@bindAll()
 class ReqAxios {
     cacheReq: any = {}
     CacheRequest:any = {}

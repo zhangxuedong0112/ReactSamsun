@@ -6,6 +6,8 @@ import Layouts from "@/layouts/index"
 export default class extends React.Component {
   
   render(){
-    return <Layouts {...this.props}/> 
+    return <div>
+      {this.props.children}
+    </div>
   }
 }
