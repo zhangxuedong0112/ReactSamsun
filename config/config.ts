@@ -11,7 +11,7 @@ export default defineConfig({
     publicPath: '/static/',
     hash: true,
     history: {
-      type: 'hash',
+      type: 'browser',
     },
     locale: {
       // default zh-CN

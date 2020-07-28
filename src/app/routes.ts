@@ -1,12 +1,13 @@
 const routes = [
-    {path: '/login', component: "@/pages/user/login"},
+    {exact: true, path: '/login', component: "@/pages/user/login"},
     
     { 
         path: '/', 
         component: '@/layouts',
+        // component: "@/pages/index",
         routes: [
-            {path: "/test", component: "@/pages/test"},
-            {path: "/user", component: "@/pages/user"},
+            {exact: true, path: "/test", component: "@/pages/test"},
+            {exact: true, path: "/user", component: "@/pages/user"},
 
 
             { component: '@/pages/404' },

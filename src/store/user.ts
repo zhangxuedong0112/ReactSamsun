@@ -2,7 +2,7 @@ import { action, observable, runInAction, computed, toJS } from 'mobx';
 
 export class UserStore {
     @observable
-    user = {}
+    user:any = {}
 
     @action
     setUser(user){

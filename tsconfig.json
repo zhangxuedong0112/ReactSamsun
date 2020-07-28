@@ -7,8 +7,10 @@
     "jsx": "react",
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "strict": false,
+    "allowJs": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
@@ -22,5 +24,6 @@
     "config/**/*",
     ".umirc.ts",
     "typings.d.ts"
-  ]
+  ],
+  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
 }

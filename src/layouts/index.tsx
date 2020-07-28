@@ -13,10 +13,13 @@ export default (props:any) =>{
     const [collapsed, setCollapsed] = useState(false)
 
     return <Layout className="components-layout-demo-custom-trigger">
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" />
-        <ProjectMenu/>
+        <Sider trigger={null} collapsible collapsed={collapsed} style={{overflowY:"auto"}}>
+        
+            <div className="logo" />
+            <ProjectMenu/>
+
         </Sider>
+
         <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 0 }}>
                 {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
