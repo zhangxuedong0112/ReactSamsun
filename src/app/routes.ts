@@ -6,6 +6,7 @@ const routes = [
         component: '@/layouts',
         // component: "@/pages/index",
         routes: [
+            {exact: true, path: "/", component: "@/pages/welcome"},
             {exact: true, path: "/test", component: "@/pages/test"},
             {exact: true, path: "/user", component: "@/pages/user"},
 

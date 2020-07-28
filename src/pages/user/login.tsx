@@ -8,7 +8,7 @@ import { history } from 'umi';
 @bindAll()
 @observer
 export default class extends React.Component {
-        
+      
     render(){
         const layout = {
             labelCol: { span: 8 },

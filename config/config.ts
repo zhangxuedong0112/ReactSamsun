@@ -8,10 +8,11 @@ console.log("@@@@@@@@@@", REACT_APP_ENV)
 /*资料 https://v2.umijs.org/zh/config/#plugins */
 export default defineConfig({
     base: '/',
-    publicPath: '/static/',
+    // publicPath: '/',
     hash: true,
     history: {
-      type: 'browser',
+      // type: 'browser',
+      type: 'hash',
     },
     locale: {
       // default zh-CN

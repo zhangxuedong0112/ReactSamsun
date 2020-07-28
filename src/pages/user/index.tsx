@@ -16,7 +16,7 @@ export default function(props:any){
                 method: "get",
                 url: "/users",
                 body: null
-            }).then((res)=>{
+            }).then((res:any)=>{
                 console.log("res", res)
                 setUserList(res.users)
             });
