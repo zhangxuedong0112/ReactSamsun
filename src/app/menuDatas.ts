@@ -4,7 +4,32 @@ export interface menuDatas {
     id: any,
     pid: any,
     label: any,
-    link: any
+    icon: any,
+    link: any,
+    children: any
+}
+
+function initMenuDatas(menus, pid=0) {
+    let arr = [];
+
+    menus.map((d)=>{
+        if(d.pid == pid){
+            let children = initMenuDatas(menus, d.id)
+
+            if(children.length == 0){
+                children = null
+            }
+
+
+            arr.push({
+                ...d,
+                children: children
+            })
+        }
+    })
+
+    return arr
+
 }
 
 export function useMenuDatas(uid?:any):any {
@@ -14,12 +39,14 @@ export function useMenuDatas(uid?:any):any {
             id: 100,
             pid: 0,
             label: "用户",
+            icon: "GithubOutlined"
         },
         {
             id: 101,
             pid: 100,
             label: "用户列表",
-            link: "/user"
+            link: "/user",
+            icon: "AliwangwangOutlined"
         },
 
         {
@@ -32,9 +59,16 @@ export function useMenuDatas(uid?:any):any {
             pid: 200,
             label: "test",
             link: "/test"
+        },
+        {
+            id: 999,
+            pid: 0,
+            label: "用户列表",
+            link: "/user",
+            icon: "AliwangwangOutlined"
         }
     ])
     // 获取远程权限内目录
 
-    return menus
+    return initMenuDatas(menus)
 } 
