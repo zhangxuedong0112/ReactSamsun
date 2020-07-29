@@ -1,74 +1,73 @@
 import React, { useState, useEffect } from 'react';
 
 export interface menuDatas {
-    id: any,
-    pid: any,
-    label: any,
-    icon: any,
-    link: any,
-    children: any
+  id: any;
+  pid: any;
+  label: any;
+  icon: any;
+  link: any;
+  children: any;
 }
 
-function initMenuDatas(menus, pid=0) {
-    let arr = [];
+export function useMenuDatas(uid?: any): any {
+  /* react hook 获取状态语法 */
+  const [menus, setMenus] = useState([
+    {
+      id: 100,
+      pid: 0,
+      label: '用户',
+      icon: 'GithubOutlined',
+    },
+    {
+      id: 101,
+      pid: 100,
+      label: '泡泡头',
+      link: '/user',
+      icon: 'AliwangwangOutlined',
+    },
 
-    menus.map((d)=>{
-        if(d.pid == pid){
-            let children = initMenuDatas(menus, d.id)
+    {
+      id: 200,
+      pid: 0,
+      label: '泡泡头拿出来',
+      link: '/user',
+      icon: 'AliwangwangOutlined',
+    },
 
-            if(children.length == 0){
-                children = null
-            }
+    {
+      id: 300,
+      pid: 0,
+      label: 'Demo',
+      icon: 'SmileOutlined',
+    },
+    {
+      id: 301,
+      pid: 300,
+      label: '富文本包含mobx',
+      link: '/editor',
+      icon: 'ProfileOutlined',
+    },
+    {
+      id: 302,
+      pid: 300,
+      label: 'mockDemo',
+      link: '/mock',
+      icon: 'ForkOutlined',
+    },
 
+    {
+      id: 1000,
+      pid: 0,
+      label: '测试',
+    },
+    {
+      id: 1001,
+      pid: 1000,
+      label: 'hookDemo',
+      link: '/hookDemo',
+    },
+  ]);
+  // 获取远程权限内目录
 
-            arr.push({
-                ...d,
-                children: children
-            })
-        }
-    })
-
-    return arr
-
+  return menus;
 }
-
-export function useMenuDatas(uid?:any):any {
-    /* react hook 获取状态语法 */
-    const [menus, setMenus] = useState([
-        {
-            id: 100,
-            pid: 0,
-            label: "用户",
-            icon: "GithubOutlined"
-        },
-        {
-            id: 101,
-            pid: 100,
-            label: "用户列表",
-            link: "/user",
-            icon: "AliwangwangOutlined"
-        },
-
-        {
-            id: 200,
-            pid: 0,
-            label: "测试",
-        },
-        {
-            id: 201,
-            pid: 200,
-            label: "test",
-            link: "/test"
-        },
-        {
-            id: 999,
-            pid: 0,
-            label: "用户列表",
-            link: "/user",
-            icon: "AliwangwangOutlined"
-        }
-    ])
-    // 获取远程权限内目录
-
-    return initMenuDatas(menus)
-} 
