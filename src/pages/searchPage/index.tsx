@@ -5,8 +5,10 @@ import { FormInstance } from 'rc-field-form/lib/interface';
 import Message from '@/utils/message';
 import { Input } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
+import './style.less';
 
 const SearchDemo: React.FC = props => {
+    const [formDatas, setFormDatas] = useState({});
     let form: FormInstance;
 
     const SearchDatas: SearchDatasProps[] = [
@@ -65,7 +67,8 @@ const SearchDemo: React.FC = props => {
                         try {
                             let ds = await form.validateFields();
 
-                            Message.success(JSON.stringify(ds));
+                            setFormDatas(ds);
+                            // Message.success(JSON.stringify(ds));
                         } catch (error) {
                             console.error(error);
                         }
@@ -82,6 +85,11 @@ const SearchDemo: React.FC = props => {
                     Clear
                 </Button>
             </Search>
+
+            <div className="search-result-list">
+                <p>Search Result List</p>
+                <p>{JSON.stringify(formDatas)}</p>
+            </div>
         </>
     );
 };
