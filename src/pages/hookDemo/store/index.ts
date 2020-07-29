@@ -1,29 +1,29 @@
 import { useState, useEffect } from 'react';
 
 export function UseFriendStatus(friendID: any) {
-  const [isOnline, steIsOnline] = useState(false);
+    const [isOnline, steIsOnline] = useState(false);
 
-  function handleStatusChange(status: any) {
-    steIsOnline(status.isOnline);
-  }
-  console.log('@@@@进入1', isOnline);
-
-  useEffect(() => {
-    if (friendID == 1) {
-      handleStatusChange({ isOnline: true });
-    } else {
-      handleStatusChange({ isOnline: false });
+    function handleStatusChange(status: any) {
+        steIsOnline(status.isOnline);
     }
+    console.log('@@@@进入1', isOnline);
 
-    return () => {
-      /* 清空数据 */
-    };
-  });
+    useEffect(() => {
+        if (friendID == 1) {
+            handleStatusChange({ isOnline: true });
+        } else {
+            handleStatusChange({ isOnline: false });
+        }
 
-  // setTimeout(()=>{
-  //     console.log("change")
-  //     handleStatusChange({isOnline: false})
-  // }, 3000)
+        return () => {
+            /* 清空数据 */
+        };
+    });
 
-  return isOnline;
+    // setTimeout(()=>{
+    //     console.log("change")
+    //     handleStatusChange({isOnline: false})
+    // }, 3000)
+
+    return isOnline;
 }

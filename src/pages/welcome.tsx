@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react';
 
-export default (props)=>{
-    return <div>
-        欢迎使用umi
-    </div>
-}
+const Welcom: React.FC = props => {
+    return <div>欢迎使用umi</div>;
+};
+
+export default Welcom;

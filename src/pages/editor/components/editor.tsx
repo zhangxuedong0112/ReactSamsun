@@ -7,55 +7,55 @@ import store from '../store';
 
 /* 使用mobx */
 const Editor: React.FC<any> = Infinity([observer], props => {
-  const [form] = Form.useForm();
-  const { validateFields } = form;
+    const [form] = Form.useForm();
+    const { validateFields } = form;
 
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
-  const FillLayout = {
-    wrapperCol: { span: 24 },
-  };
+    const layout = {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 16 },
+    };
+    const tailLayout = {
+        wrapperCol: { offset: 8, span: 16 },
+    };
+    const FillLayout = {
+        wrapperCol: { span: 24 },
+    };
 
-  const onFinish = values => {
-    console.log('Success:', values);
-  };
+    const onFinish = values => {
+        console.log('Success:', values);
+    };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
+    const onFinishFailed = errorInfo => {
+        console.log('Failed:', errorInfo);
+    };
 
-  return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{ editor: store.html }}
-      form={form}
-    >
-      <Form.Item {...FillLayout} name="editor">
-        <WangEditor></WangEditor>
-      </Form.Item>
+    return (
+        <Form
+            {...layout}
+            name="basic"
+            initialValues={{ editor: store.html }}
+            form={form}
+        >
+            <Form.Item {...FillLayout} name="editor">
+                <WangEditor></WangEditor>
+            </Form.Item>
 
-      <Button
-        onClick={async () => {
-          const res = await validateFields();
-          const { editor } = res;
+            <Button
+                onClick={async () => {
+                    const res = await validateFields();
+                    const { editor } = res;
 
-          store.setHtml(editor);
-        }}
-      >
-        Go
-      </Button>
+                    store.setHtml(editor);
+                }}
+            >
+                Go
+            </Button>
 
-      <Divider />
+            <Divider />
 
-      <p>{store.html}</p>
-    </Form>
-  );
+            <p>{store.html}</p>
+        </Form>
+    );
 });
 
 export default Editor;
