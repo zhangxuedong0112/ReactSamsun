@@ -2,12 +2,10 @@
 // import {userStore} from "@/store"
 // import { history } from 'umi';
 
-
 // let extraRoutes;
 // export function patchRoutes({ routes }) {
 //   merge(routes, extraRoutes);
 // }
-
 
 // export function render() {
 //   fetch('/api/routes').then((res) => { extraRoutes = res.routes })
@@ -36,5 +34,5 @@
 //     }else{
 //         history.push('/login');
 //     }
-    
+
 // }ww
