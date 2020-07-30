@@ -21,18 +21,6 @@ const SearchDemo: React.FC = props => {
             ],
         },
         {
-            name: 'password',
-            label: 'Password',
-            component: (
-                <Input
-                    prefix={<LockOutlined className="site-form-item-icon" />}
-                    type="password"
-                    placeholder="Password"
-                />
-            ),
-            rules: [{ required: true, message: 'Please input your Password!' }],
-        },
-        {
             name: 'demo1',
             label: 'demo1',
             component: <Input />,
@@ -45,6 +33,16 @@ const SearchDemo: React.FC = props => {
         {
             name: 'demo3',
             label: 'demo3demo3demo3',
+            component: <Input />,
+        },
+        {
+            name: 'demo4',
+            label: 'demo4',
+            component: <Input />,
+        },
+        {
+            name: 'demo5',
+            label: 'demo5',
             component: <Input />,
         },
     ];

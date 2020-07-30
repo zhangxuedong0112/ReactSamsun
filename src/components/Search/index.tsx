@@ -64,15 +64,17 @@ const Search: React.FC<SearchProps> = props => {
                     <Col span={24} style={{ textAlign: 'right' }}>
                         {props.children}
 
-                        <a
-                            style={{ fontSize: 12 }}
-                            onClick={() => {
-                                setExpand(!expand);
-                            }}
-                        >
-                            {expand ? <UpOutlined /> : <DownOutlined />}{' '}
-                            Collapse
-                        </a>
+                        {datas.length > 6 && (
+                            <a
+                                style={{ fontSize: 12 }}
+                                onClick={() => {
+                                    setExpand(!expand);
+                                }}
+                            >
+                                {expand ? <UpOutlined /> : <DownOutlined />}{' '}
+                                Collapse
+                            </a>
+                        )}
                     </Col>
                 </Row>
             </Form>
