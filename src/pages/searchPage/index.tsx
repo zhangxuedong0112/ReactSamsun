@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Button from 'antd/es/button/button';
 import Search, { SearchDatasProps } from '@/components/Search';
 import { FormInstance } from 'rc-field-form/lib/interface';
-import Message from '@/utils/message';
-import { Input } from 'antd';
-import { LockOutlined } from '@ant-design/icons';
+import { Input, Form } from 'antd';
 import './style.less';
+import SelectSam from '@/components/SelectSam';
 
 const SearchDemo: React.FC = props => {
     const [formDatas, setFormDatas] = useState({});
-    let form: FormInstance;
+    let [form] = Form.useForm();
+
+    const { getFieldsValue, validateFields, getFieldInstance } = form;
 
     const SearchDatas: SearchDatasProps[] = [
         {
@@ -23,17 +24,77 @@ const SearchDemo: React.FC = props => {
         {
             name: 'demo1',
             label: 'demo1',
-            component: <Input />,
+            component: (
+                <SelectSam
+                    mode="multiple"
+                    dataSource={[
+                        { text: '1', value: '1', selected: false },
+                        { text: '2', value: '2', selected: false },
+                    ]}
+                />
+            ),
         },
         {
             name: 'demo2',
             label: 'demo2',
-            component: <Input />,
+            linkage: () => {
+                return getFieldsValue(['demo1']);
+            },
+            component: (
+                <SelectSam
+                    mode="multiple"
+                    dataSource={(linkages: any) => {
+                        return new Promise((res, rej) => {
+                            if (!linkages || !linkages.demo1) {
+                                return res([]);
+                            }
+
+                            setTimeout(() => {
+                                let arr = linkages.demo1.map(d => {
+                                    return {
+                                        text: d,
+                                        value: d,
+                                        selected: false,
+                                    };
+                                });
+
+                                return res(arr);
+                            }, 1000);
+                        });
+                    }}
+                />
+            ),
         },
         {
             name: 'demo3',
-            label: 'demo3demo3demo3',
-            component: <Input />,
+            label: 'demo3',
+            linkage: () => {
+                return getFieldsValue(['demo2']);
+            },
+            component: (
+                <SelectSam
+                    mode="multiple"
+                    dataSource={(linkages: any) => {
+                        return new Promise((res, rej) => {
+                            if (!linkages || !linkages.demo2) {
+                                return res([]);
+                            }
+
+                            setTimeout(() => {
+                                let arr = linkages.demo2.map(d => {
+                                    return {
+                                        text: d,
+                                        value: d,
+                                        selected: false,
+                                    };
+                                });
+
+                                return res(arr);
+                            }, 1000);
+                        });
+                    }}
+                />
+            ),
         },
         {
             name: 'demo4',
@@ -54,8 +115,8 @@ const SearchDemo: React.FC = props => {
                     userName: 'zxd',
                 }}
                 datas={SearchDatas}
-                getForm={res => {
-                    form = res;
+                getForm={() => {
+                    return form;
                 }}
             >
                 <Button
@@ -63,10 +124,9 @@ const SearchDemo: React.FC = props => {
                     htmlType="submit"
                     onClick={async () => {
                         try {
-                            let ds = await form.validateFields();
+                            let ds = await validateFields();
 
                             setFormDatas(ds);
-                            // Message.success(JSON.stringify(ds));
                         } catch (error) {
                             console.error(error);
                         }

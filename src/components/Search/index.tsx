@@ -5,7 +5,7 @@ import { UpOutlined, DownOutlined } from '@ant-design/icons';
 export interface SearchProps {
     initialValues: any;
     datas: SearchDatasProps[];
-    getForm: Function;
+    getForm?: Function;
 }
 
 export interface SearchDatasProps {
@@ -13,14 +13,13 @@ export interface SearchDatasProps {
     label?: any;
     component: any;
     rules?: any;
+    [key: string]: any;
 }
 
 const Search: React.FC<SearchProps> = props => {
     const [expand, setExpand] = useState(false);
-    const [form] = Form.useForm();
+    const [num, SetNum] = useState(0);
     const { datas, getForm } = props;
-
-    getForm && getForm(form);
 
     const getFields = () => {
         let minCount = datas.length > 6 ? 6 : datas.length;
@@ -29,16 +28,24 @@ const Search: React.FC<SearchProps> = props => {
         const children = [];
         for (let i = 0; i < count; i++) {
             const d = datas[i];
+            let linkage = d.linkage ? JSON.stringify(d.linkage()) : '';
+
+            let pop = {};
+            if (d.linkage) {
+                pop = {
+                    linkage: d.linkage(),
+                };
+            }
 
             children.push(
                 <Col span={8} key={i}>
                     <Form.Item
-                        key={d.name}
+                        key={d.name + linkage}
                         name={d.name}
                         label={d.label || ''}
                         rules={d.rules || []}
                     >
-                        {d.component}
+                        {React.cloneElement(d.component, { ...pop })}
                     </Form.Item>
                 </Col>,
             );
@@ -46,18 +53,19 @@ const Search: React.FC<SearchProps> = props => {
         return children;
     };
 
-    const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
-    };
+    let form = getForm ? { form: getForm() } : {};
 
     return (
         <>
             <Form
-                {...layout}
-                form={form}
+                {...form}
+                layout={'vertical'}
                 name="advanced_search"
                 className="ant-advanced-search-form"
+                scrollToFirstError={true}
+                onValuesChange={(changedValues, allValues) => {
+                    SetNum(num + 1);
+                }}
             >
                 <Row gutter={24}>{getFields()}</Row>
                 <Row>
