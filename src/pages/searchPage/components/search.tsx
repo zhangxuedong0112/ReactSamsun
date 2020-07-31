@@ -157,10 +157,6 @@ const Search: React.FC = props => {
     return (
         <>
             <FormSam
-                initialValues={{
-                    /* 初始化数据 */
-                    userName: 'zxd',
-                }}
                 datas={SearchDatas} /* 组件数据 */
                 getForm={() => {
                     /* form 对象注进去 */
@@ -172,6 +168,11 @@ const Search: React.FC = props => {
                     /* antd form 其他参数可自己传入 */
                     {
                         // style: { background: '#fafafa' },
+                        initialValues: {
+                            /* 初始化数据 */
+                            wenben1: '初始化内容',
+                            demo1: ['1'],
+                        },
                     }
                 }
             >

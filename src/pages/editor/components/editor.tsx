@@ -2,57 +2,78 @@ import React from 'react';
 import { observer, useLocalStore } from 'mobx-react';
 import { Row, Col, Form, Button, Divider } from 'antd';
 import WangEditor from '@/components/WangEditor';
-import Infinity from '@/components/Intensify';
 import store from '../store';
-import Notification from '@/components/notification';
 import Message from '@/components/message';
+import FormSam, { FormDatasProps } from '@/components/FormSam';
 
 /* 使用mobx */
-const Editor: React.FC<any> = Infinity([observer], props => {
+const Editor: React.FC<any> = observer(props => {
     const [form] = Form.useForm();
     const { validateFields } = form;
 
-    const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
-    };
-    const tailLayout = {
-        wrapperCol: { offset: 8, span: 16 },
-    };
-    const FillLayout = {
-        wrapperCol: { span: 24 },
-    };
+    const SearchDatas: FormDatasProps[] = [
+        {
+            name: 'editor',
+            label: '文本框带校验',
+            component: <WangEditor />,
+            // rules: [{ required: true, message: 'Please input!' }],
+        },
+    ];
 
     return (
-        <Form
-            {...layout}
-            name="basic"
-            initialValues={{ editor: store.html }}
-            form={form}
+        <FormSam
+            datas={SearchDatas} /* 组件数据 */
+            getForm={() => {
+                /* form 对象注进去 */
+                return form;
+            }}
+            fold={true} /* 是否显示折叠, 可不传，默认false */
+            columnNum={1} /* 可不传，默认3 */
+            antdProps={
+                /* antd form 其他参数可自己传入 */
+                {
+                    // style: { background: '#fafafa' },
+                    initialValues: {
+                        /* 初始化数据 */
+                        editor: store.html,
+                    },
+                }
+            }
         >
-            <Form.Item {...FillLayout} name="editor">
-                <WangEditor></WangEditor>
-            </Form.Item>
-
+            {/* 自定义子组件 */}
             <Button
+                type="primary"
+                htmlType="submit"
                 onClick={async () => {
-                    const res = await validateFields();
-                    const { editor } = res;
+                    try {
+                        const res = await validateFields();
+                        const { editor } = res;
 
-                    store.setHtml(editor);
+                        store.setHtml(editor);
 
-                    // Notification.success("获取成功")
-
-                    Message.success('获取成功');
+                        // Notification.success("获取成功")
+                        Message.success('获取成功');
+                    } catch (error) {
+                        console.error(error);
+                    }
                 }}
             >
-                Go
+                Search
+            </Button>
+
+            <Button
+                style={{ margin: '0 8px' }}
+                onClick={() => {
+                    form.resetFields();
+                }}
+            >
+                Clear
             </Button>
 
             <Divider />
 
             <p>{store.html}</p>
-        </Form>
+        </FormSam>
     );
 });
 

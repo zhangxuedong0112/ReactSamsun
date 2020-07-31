@@ -1,10 +1,13 @@
+const { REACT_APP_ENV } = process.env;
+
+console.log('@@@@@@@@@@', REACT_APP_ENV);
+
 const routes = [
     { exact: true, path: '/login', component: '@/pages/login' },
 
     {
         path: '/',
-        component: '@/layouts',
-        // component: "@/pages/index",
+        component: REACT_APP_ENV == 'pre' ? '@/pages/index' : '@/layouts',
         routes: [
             { exact: true, path: '/', component: '@/pages/welcome' },
             { exact: true, path: '/hookDemo', component: '@/pages/hookDemo' },

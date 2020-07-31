@@ -5,7 +5,7 @@
     "start:dev": "cross-env REACT_APP_ENV=dev MOCK=none umi dev",
     "start:sit": "cross-env REACT_APP_ENV=sit MOCK=none umi dev",
     "start:uat": "cross-env REACT_APP_ENV=uat MOCK=none umi dev",
-    "build": "umi build",
+    "build": "cross-env REACT_APP_ENV=pre umi build",
     "server": "serve ./dist",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Col, Input, Row, Button } from 'antd';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 
 export interface FormSamProps {
-    initialValues: any /* 初始化对象 */;
+    // initialValues: any /* 初始化对象 */;
     datas: FormDatasProps[] /* 需要渲染的组件对象 */;
     getForm?: Function /* 返回当前form对象进行绑定，可不传 */;
     fold?: boolean /* 是否显示折叠 */;
@@ -30,6 +30,13 @@ const FormSam: React.FC<FormSamProps> = props => {
     const [num, SetNum] = useState(0);
     const { datas, getForm, fold, columnNum, antdProps = {} } = props;
     let defaultMinCount = 6;
+
+    useEffect(() => {
+        /* 如果有初始化数据，重新render，否则级联下拉会没数据 */
+        if (antdProps.initialValues) {
+            SetNum(num + 1);
+        }
+    }, []);
 
     const getFields = () => {
         let count: any;

@@ -1,30 +1,31 @@
-import { bindAll } from "lodash-decorators";
-import axios from "axios"
-import moment from "moment"
-import { notification } from "antd";
-import lodash from "lodash"
+import { bindAll } from 'lodash-decorators';
+import axios from 'axios';
+import moment from 'moment';
+import { notification } from 'antd';
 import NProgress from 'nprogress';
 
-const env = process.env.REACT_APP_ENV || "dev";
-const development = env == "dev"
+const env = process.env.REACT_APP_ENV || 'dev';
+const development = env == 'dev';
 
 @bindAll()
 class ReqAxios {
-    cacheReq: any = {}
-    CacheRequest:any = {}
+    cacheReq: any = {};
+    CacheRequest: any = {};
 
     //默认sit
-    token = "eyJhbGciOiJIUzI1NiJ9.eyJzZXJ2aWNlTmFtZSI6IjIyNjQiLCJzZXJ2aWNlS2V5IjoiNTAyMWFjNDhiOWEwNDIxNTkxNzJmZDg2YjFlZWJiZjUiLCJzZXJ2aWNlVHlwZSI6IjEiLCJzZXJ2aWNlQXBwIjoiOTkxIiwic2VydmljZUNsdXN0ZXIiOiIyIiwianRpIjoiOGIwZmJhYmY1YjU0NGIxODk0YTAzMzdlYjNlYWE5ZGQiLCJpYXQiOjE1ODg5MDcwMjl9._QMXwVlIItlRIj2c6uqBnockaT2psxWggp3YuuYIYx0"
+    token =
+        'eyJhbGciOiJIUzI1NiJ9.eyJzZXJ2aWNlTmFtZSI6IjIyNjQiLCJzZXJ2aWNlS2V5IjoiNTAyMWFjNDhiOWEwNDIxNTkxNzJmZDg2YjFlZWJiZjUiLCJzZXJ2aWNlVHlwZSI6IjEiLCJzZXJ2aWNlQXBwIjoiOTkxIiwic2VydmljZUNsdXN0ZXIiOiIyIiwianRpIjoiOGIwZmJhYmY1YjU0NGIxODk0YTAzMzdlYjNlYWE5ZGQiLCJpYXQiOjE1ODg5MDcwMjl9._QMXwVlIItlRIj2c6uqBnockaT2psxWggp3YuuYIYx0';
 
     constructor() {
         // 默认超时设置
         axios.defaults.timeout = 1000 * 60;
 
         // 相对路径设置
-        if (env == "dev") {
+        if (env == 'dev') {
             axios.defaults.baseURL = '/api';
         } else {
-            axios.defaults.baseURL = 'http://zuul-dev.lmp-sy.xpaas.lenovo.com/lasdms';
+            axios.defaults.baseURL =
+                'http://zuul-dev.lmp-sy.xpaas.lenovo.com/lasdms';
         }
 
         // //多环境配置，读取配置文件数据
@@ -38,7 +39,7 @@ class ReqAxios {
 
         //http response 拦截器
         axios.interceptors.response.use(
-            (res:any) => {
+            (res: any) => {
                 NProgress.done();
                 if (res) {
                     return res;
@@ -47,7 +48,7 @@ class ReqAxios {
             err => {
                 NProgress.done();
                 return Promise.reject(err);
-            }
+            },
         );
 
         //http request 拦截器
@@ -55,8 +56,8 @@ class ReqAxios {
             config => {
                 NProgress.start();
                 // 获取token
-                const sessionToken = sessionStorage.getItem("token");
-                const token = sessionToken || "";
+                const sessionToken = sessionStorage.getItem('token');
+                const token = sessionToken || '';
                 // 设置参数格式
                 if (!config.headers['Content-Type']) {
                     config.headers = {
@@ -64,7 +65,10 @@ class ReqAxios {
                     };
                 }
                 // 添加token到headers
-                const defaultToken = env == "dev" ? "eyJ1c2VySWQiOiJ3ZW54cTEiLCJ1c2VyTmFtZSI6IlhpblFpYW9XZW4iLCJidXNpbmVzc0dyb3VwTGlzdCI6WyJQQ0ciLCJEQ0ciXSwicmVnaW9uTGlzdCI6WyJCcmF6aWwiLCJMQVMiXSwiZXhwaXJlVGltZSI6IjIwMjAwNzA2MTgwNDEzIiwidmFsaWRUaW1lTnVtYmVyIjozMH0" : "";
+                const defaultToken =
+                    env == 'dev'
+                        ? 'eyJ1c2VySWQiOiJ3ZW54cTEiLCJ1c2VyTmFtZSI6IlhpblFpYW9XZW4iLCJidXNpbmVzc0dyb3VwTGlzdCI6WyJQQ0ciLCJEQ0ciXSwicmVnaW9uTGlzdCI6WyJCcmF6aWwiLCJMQVMiXSwiZXhwaXJlVGltZSI6IjIwMjAwNzA2MTgwNDEzIiwidmFsaWRUaW1lTnVtYmVyIjozMH0'
+                        : '';
                 config.headers.token = token || defaultToken;
 
                 // 鉴权参数设置
@@ -85,26 +89,26 @@ class ReqAxios {
             },
             err => {
                 return Promise.reject(err);
-            }
+            },
         );
     }
 
     initGetProps(props) {
-        let str = ""
+        let str = '';
 
-        if (props.url.indexOf("?") == -1) {
-            str = "?"
+        if (props.url.indexOf('?') == -1) {
+            str = '?';
         } else {
-            str = "&"
+            str = '&';
         }
 
         for (let key in props.body) {
-            str += `${key}=${props.body[key]}&`
+            str += `${key}=${props.body[key]}&`;
         }
 
-        str = str.substr(0, str.length - 1)
+        str = str.substr(0, str.length - 1);
 
-        props.url += str
+        props.url += str;
 
         return props;
     }
@@ -138,17 +142,20 @@ class ReqAxios {
         //     }
         // }
 
-        return url
+        return url;
     }
 
     cache(props) {
         return new Promise(async (res, rej) => {
-
-            let url = `${props.url}?${JSON.stringify(props.body)}`
+            let url = `${props.url}?${JSON.stringify(props.body)}`;
 
             if (this.cacheReq[url] != undefined) {
-                console.info(`request from cache \n req: "${url}" ;  \n \n res: "${JSON.stringify(this.cacheReq[url])}" \n \n ---------------`)
-                return res(this.cacheReq[url])
+                console.info(
+                    `request from cache \n req: "${url}" ;  \n \n res: "${JSON.stringify(
+                        this.cacheReq[url],
+                    )}" \n \n ---------------`,
+                );
+                return res(this.cacheReq[url]);
             }
 
             /** 缓存request，同时发起同一请求时，仅请求一次 */
@@ -163,10 +170,10 @@ class ReqAxios {
             }
             try {
                 const d = await ajaxObservable;
-                this.cacheReq[url] = d
-                return res(d)
+                this.cacheReq[url] = d;
+                return res(d);
             } catch (error) {
-                return rej(error)
+                return rej(error);
             }
 
             // try {
@@ -176,215 +183,253 @@ class ReqAxios {
             // } catch (error) {
             //     return rej(error)
             // }
-        })
-
+        });
     }
 
     ajax(props) {
-        props.url = this.initUrl(props.url)
-        if (props.method == "get") {
-
-            if (!!window["ActiveXObject"] || "ActiveXObject" in window) {//ie get 添加 ts防止走缓存
-                props.body = props.body || {}
+        props.url = this.initUrl(props.url);
+        if (props.method == 'get') {
+            if (!!window['ActiveXObject'] || 'ActiveXObject' in window) {
+                //ie get 添加 ts防止走缓存
+                props.body = props.body || {};
 
                 props.body = {
                     ...props.body,
-                    ts: new Date().getTime()
-                }
+                    ts: new Date().getTime(),
+                };
 
-                props = this.initGetProps(props)
+                props = this.initGetProps(props);
             } else if (props.body) {
-                props = this.initGetProps(props)
+                props = this.initGetProps(props);
             }
-
         }
 
         return new Promise((res, rej) => {
-            axios[props.method](props.url, props.body, props.header).then(data => {
-                data = data.data;
+            axios[props.method](props.url, props.body, props.header)
+                .then(data => {
+                    data = data.data;
 
-                if (data.code == 200) {
-                    return res(data.data)
-                } else if (data.messageCode == 510 || data.code == 510) {
-                    notification.warning({ message: data.message });
-                } else {
-                    notification.error({ message: data.message });
-                }
-                console.log("ajax code not 200", data)
-                return rej(data)
-
-            }).catch((e: any) => {
-                let response = e.response
-                console.log("ajax catch", response)
-                //System error,please raise ticket to contact IT engineer.
-                if (response) {
-                    if (response.data.messageCode == 510) {
-                        notification.warning({ message: response.data.message });
-                    } else if (response && response.data.message) {
-                        notification.error({
-                            description: development ? response.data.path : "error",
-                            message: development ? response.data.message : "System error,please raise ticket to contact IT engineer."
-                        });
+                    if (data.code == 200) {
+                        return res(data.data);
+                    } else if (data.messageCode == 510 || data.code == 510) {
+                        notification.warning({ message: data.message });
                     } else {
-                        notification.error({ message: `${response.status} ${response.statusText}` })
+                        notification.error({ message: data.message });
                     }
-                } else {
-                    notification.error({ message: "Time Out" })
-                }
-                rej(e)
-            })
-        })
+                    console.log('ajax code not 200', data);
+                    return rej(data);
+                })
+                .catch((e: any) => {
+                    let response = e.response;
+                    console.log('ajax catch', response);
+                    //System error,please raise ticket to contact IT engineer.
+                    if (response) {
+                        if (response.data.messageCode == 510) {
+                            notification.warning({
+                                message: response.data.message,
+                            });
+                        } else if (response && response.data.message) {
+                            notification.error({
+                                description: development
+                                    ? response.data.path
+                                    : 'error',
+                                message: development
+                                    ? response.data.message
+                                    : 'System error,please raise ticket to contact IT engineer.',
+                            });
+                        } else {
+                            notification.error({
+                                message: `${response.status} ${response.statusText}`,
+                            });
+                        }
+                    } else {
+                        notification.error({ message: 'Time Out' });
+                    }
+                    rej(e);
+                });
+        });
     }
 
-    fileDownload(method, url, body, header = {}) {//post get
-        url = this.initUrl(url)
+    fileDownload(method, url, body, header = {}) {
+        //post get
+        url = this.initUrl(url);
         return new Promise(async (promiseRes, rej) => {
             // window["showLoadingTitle"]("Create Download File...");
-            axios[method](url, body, { ...header, responseType: 'arraybuffer' }).then(async res => {
-                // window["hideLoadingTitle"]();
-                let str = moment(new Date()).format("YYYYMMDD");
-                var fileName = str + ".xlsx";
-                
-                if (res.headers["content-disposition"]) {
-                    fileName = res.headers["content-disposition"].split(";")[1].split("filename=")[1];
-                    // 创建Blob对象，设置文件类型
-                    let blob = new Blob([res.data], { type: "application/vnd.ms-excel" })
-                    let objectUrl = URL.createObjectURL(blob)// 创建URL
+            axios[method](url, body, { ...header, responseType: 'arraybuffer' })
+                .then(async res => {
+                    // window["hideLoadingTitle"]();
+                    let str = moment(new Date()).format('YYYYMMDD');
+                    var fileName = str + '.xlsx';
 
-                    // ie
-                    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                        window.navigator.msSaveOrOpenBlob(blob, fileName);
-                    } else {
-                        const link = document.createElement('a')
-                        link.href = objectUrl
-                        link.download = fileName; // 自定义文件名
-                        link.click() // 下载文件
-                    }
+                    if (res.headers['content-disposition']) {
+                        fileName = res.headers['content-disposition']
+                            .split(';')[1]
+                            .split('filename=')[1];
+                        // 创建Blob对象，设置文件类型
+                        let blob = new Blob([res.data], {
+                            type: 'application/vnd.ms-excel',
+                        });
+                        let objectUrl = URL.createObjectURL(blob); // 创建URL
 
-                    URL.revokeObjectURL(objectUrl); // 释放内存
-
-                    return promiseRes()
-
-                } else {
-                    try {
-                        let strData: any = await this.getUint8Value(res.data)
-                        strData = JSON.parse(strData)
-                        if (strData.messageCode == "510") {
-                            notification.error({ message: strData.message })
+                        // ie
+                        if (
+                            window.navigator &&
+                            window.navigator.msSaveOrOpenBlob
+                        ) {
+                            window.navigator.msSaveOrOpenBlob(blob, fileName);
+                        } else {
+                            const link = document.createElement('a');
+                            link.href = objectUrl;
+                            link.download = fileName; // 自定义文件名
+                            link.click(); // 下载文件
                         }
 
-                        return rej()
-                    } catch (e) {
-                        return rej(e)
-                        console.log(e)
-                    }
-                }
-            }).catch(async err => {
-                const res: any = err && err.response && err.response.data ? await this.getUint8Value(err.response.data) : "";
-                console.log('file download res: ', JSON.parse(res).message);
-                notification.error({
-                    message: (res ? JSON.parse(res) : { message: "Download error" }).message
-                })
-                // window["hideLoadingTitle"]();
-                return rej(err)
-            })
+                        URL.revokeObjectURL(objectUrl); // 释放内存
 
-        })
+                        return promiseRes();
+                    } else {
+                        try {
+                            let strData: any = await this.getUint8Value(
+                                res.data,
+                            );
+                            strData = JSON.parse(strData);
+                            if (strData.messageCode == '510') {
+                                notification.error({
+                                    message: strData.message,
+                                });
+                            }
+
+                            return rej();
+                        } catch (e) {
+                            return rej(e);
+                            console.log(e);
+                        }
+                    }
+                })
+                .catch(async err => {
+                    const res: any =
+                        err && err.response && err.response.data
+                            ? await this.getUint8Value(err.response.data)
+                            : '';
+                    console.log('file download res: ', JSON.parse(res).message);
+                    notification.error({
+                        message: (res
+                            ? JSON.parse(res)
+                            : { message: 'Download error' }
+                        ).message,
+                    });
+                    // window["hideLoadingTitle"]();
+                    return rej(err);
+                });
+        });
     }
 
     getUint8Value(e) {
         return new Promise((res, rej) => {
-
-            for (var a = e, i = new DataView(a), n = "", s = 0; s < i.byteLength; s++) {
+            for (
+                var a = e, i = new DataView(a), n = '', s = 0;
+                s < i.byteLength;
+                s++
+            ) {
                 n += String.fromCharCode(i.getUint8(s));
             }
-            res(n)
-        })
+            res(n);
+        });
     }
 
     fileUpload(option) {
-        option.url = this.initUrl(option.action)
+        option.url = this.initUrl(option.action);
         return new Promise(async (promiseRes, rej) => {
             // window["showLoadingTitle"]("Uploading...");
-            let formData = new FormData()
-            formData.append('file', option.file)
+            let formData = new FormData();
+            formData.append('file', option.file);
 
             for (var key in option.data) {
-                formData.append(key, option.data[key])
+                formData.append(key, option.data[key]);
             }
 
-            axios["post"](option.url, formData, { responseType: 'arraybuffer' }).then(async (res) => {
-                // window["hideLoadingTitle"]();
-                let str = moment(new Date()).format("YYYYMMDD");
-                var fileName = str + ".xlsx";
+            axios['post'](option.url, formData, { responseType: 'arraybuffer' })
+                .then(async res => {
+                    // window["hideLoadingTitle"]();
+                    let str = moment(new Date()).format('YYYYMMDD');
+                    var fileName = str + '.xlsx';
 
-                if (res.headers["content-disposition"]) {
-                    fileName = res.headers["content-disposition"].split(";")[1].split("filename=")[1];
-                    // 创建Blob对象，设置文件类型
-                    let blob = new Blob([res.data], { type: "application/vnd.ms-excel" })
-                    let objectUrl = URL.createObjectURL(blob)// 创建URL
+                    if (res.headers['content-disposition']) {
+                        fileName = res.headers['content-disposition']
+                            .split(';')[1]
+                            .split('filename=')[1];
+                        // 创建Blob对象，设置文件类型
+                        let blob = new Blob([res.data], {
+                            type: 'application/vnd.ms-excel',
+                        });
+                        let objectUrl = URL.createObjectURL(blob); // 创建URL
 
-                    // ie
-                    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                        window.navigator.msSaveOrOpenBlob(blob, fileName);
-                    } else {
-                        const link = document.createElement('a')
-                        link.href = objectUrl
-                        link.download = fileName; // 自定义文件名
-                        link.click() // 下载文件
-                    }
-
-                    URL.revokeObjectURL(objectUrl); // 释放内存
-                    notification.error({
-                        message: `${option.file.name} Upload Error`
-                    })
-                    return rej()
-                } else {
-                    try {
-                        let strData: any = await this.getUint8Value(res.data)
-
-                        strData = JSON.parse(strData)
-                        if (strData.code == 200) {
-                            notification.success({
-                                message: `${option.file.name} Upload Success`
-                            })
-
-                            return promiseRes(strData.data)
+                        // ie
+                        if (
+                            window.navigator &&
+                            window.navigator.msSaveOrOpenBlob
+                        ) {
+                            window.navigator.msSaveOrOpenBlob(blob, fileName);
                         } else {
-                            notification.warning({
-                                message: `${strData.msg || strData.message}`
-                            })
-                            return rej()
+                            const link = document.createElement('a');
+                            link.href = objectUrl;
+                            link.download = fileName; // 自定义文件名
+                            link.click(); // 下载文件
                         }
-                    } catch (e) {
+
+                        URL.revokeObjectURL(objectUrl); // 释放内存
                         notification.error({
-                            message: `${option.file.name} Upload Error`
-                        })
-                        return rej()
-                    }
-                }
+                            message: `${option.file.name} Upload Error`,
+                        });
+                        return rej();
+                    } else {
+                        try {
+                            let strData: any = await this.getUint8Value(
+                                res.data,
+                            );
 
-            }).catch(async (res) => {
-                let strData: any;
-                try {
-                    res = res.response;
-                    strData = await this.getUint8Value(res.data)
-                    strData = JSON.parse(strData)
-                } catch (error) {
-                    strData = {
-                        message: ""
-                    }
-                }
+                            strData = JSON.parse(strData);
+                            if (strData.code == 200) {
+                                notification.success({
+                                    message: `${option.file.name} Upload Success`,
+                                });
 
-                // window["hideLoadingTitle"]();
-                notification.warning({
-                    message: `${option.file.name} Upload Error ! \n ${strData.message}`
+                                return promiseRes(strData.data);
+                            } else {
+                                notification.warning({
+                                    message: `${strData.msg ||
+                                        strData.message}`,
+                                });
+                                return rej();
+                            }
+                        } catch (e) {
+                            notification.error({
+                                message: `${option.file.name} Upload Error`,
+                            });
+                            return rej();
+                        }
+                    }
                 })
-                rej();
-            })
-        })
-    }
+                .catch(async res => {
+                    let strData: any;
+                    try {
+                        res = res.response;
+                        strData = await this.getUint8Value(res.data);
+                        strData = JSON.parse(strData);
+                    } catch (error) {
+                        strData = {
+                            message: '',
+                        };
+                    }
 
+                    // window["hideLoadingTitle"]();
+                    notification.warning({
+                        message: `${option.file.name} Upload Error ! \n ${strData.message}`,
+                    });
+                    rej();
+                });
+        });
+    }
 }
 
-export default new ReqAxios()
+export default new ReqAxios();
