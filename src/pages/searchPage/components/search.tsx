@@ -171,7 +171,7 @@ const Search: React.FC = props => {
                 antdProps={
                     /* antd form 其他参数可自己传入 */
                     {
-                        style: { background: '#fafafa' },
+                        // style: { background: '#fafafa' },
                     }
                 }
             >

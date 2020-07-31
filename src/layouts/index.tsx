@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, BackTop } from 'antd';
 import ProjectMenu from './menus';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import './style.less';
@@ -46,6 +46,23 @@ export default (props: any) => {
                     }}
                 >
                     {props.children}
+
+                    <BackTop>
+                        <div
+                            style={{
+                                height: 40,
+                                width: 40,
+                                lineHeight: '40px',
+                                borderRadius: 4,
+                                backgroundColor: '#1088e9',
+                                color: '#fff',
+                                textAlign: 'center',
+                                fontSize: 14,
+                            }}
+                        >
+                            UP
+                        </div>
+                    </BackTop>
                 </Content>
             </Layout>
         </Layout>
