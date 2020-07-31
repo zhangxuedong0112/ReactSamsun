@@ -19,3 +19,7 @@ body{
     padding: 14px !important;
     height: 100% !important;
 }
+
+.ant-collapse-item{
+    margin-bottom: 12px;
+}

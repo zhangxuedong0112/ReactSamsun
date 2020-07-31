@@ -1,0 +1,31 @@
+.lenovo-ag-grid {
+    width: 100%;
+    transition: all .1s;
+    position: relative;
+
+    .ant-spin-container,
+    .ant-spin-nested-loading {
+        height: 100%;
+    }
+   
+}
+// .ag-theme-balham .ag-status-bar{
+//     display: none;
+// }
+.ag-theme-material .ag-header{
+    font-size: 16px;
+    background-color: #f5f5f5;
+}
+// .ag-theme-material .ag-status-bar{
+//     display: none;
+// }
+.ag-theme-material .ag-icon-checkbox-checked {
+    color: #1890ff
+}
+.lenovo-ag-grid.ag-theme-balham .ag-root {
+    // border: none;
+}
+
+.ag-root-wrapper .ag-watermark {
+    // display: none !important;
+}
