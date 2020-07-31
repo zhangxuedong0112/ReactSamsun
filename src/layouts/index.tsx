@@ -15,7 +15,9 @@ export default (props: any) => {
                 trigger={null}
                 collapsible
                 collapsed={collapsed}
-                style={{ overflowY: 'auto' }}
+                style={{
+                    minHeight: '100%',
+                }}
             >
                 <div className="logo" />
                 <ProjectMenu {...props} />
@@ -36,17 +38,11 @@ export default (props: any) => {
                         },
                     )}
                 </Header>
-                <Content
-                    className="site-layout-background"
-                    style={{
-                        margin: '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
-                        height: '100%',
-                    }}
-                >
+                <Content className="site-layout-background mainPreSam">
+                    {/* 渲染 */}
                     {props.children}
 
+                    {/* 回到顶端 */}
                     <BackTop>
                         <div
                             style={{
