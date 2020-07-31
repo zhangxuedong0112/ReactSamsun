@@ -60,4 +60,4 @@ const { REACT_APP_ENV } = process.env;
 
 ### 目录介绍
 
-![avatar](/md/imgs/directory.jpg)
+![avatar](./md/imgs/directory.jpg)
