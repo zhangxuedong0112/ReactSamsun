@@ -201,7 +201,7 @@ const Search: React.FC = props => {
                         form.resetFields();
                     }}
                 >
-                    Clear
+                    Reset
                 </Button>
             </FormSam>
         </>

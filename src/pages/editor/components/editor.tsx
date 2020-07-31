@@ -14,7 +14,7 @@ const Editor: React.FC<any> = observer(props => {
     const SearchDatas: FormDatasProps[] = [
         {
             name: 'editor',
-            label: '文本框带校验',
+            // label: '文本框带校验',
             component: <WangEditor />,
             // rules: [{ required: true, message: 'Please input!' }],
         },
@@ -58,16 +58,7 @@ const Editor: React.FC<any> = observer(props => {
                     }
                 }}
             >
-                Search
-            </Button>
-
-            <Button
-                style={{ margin: '0 8px' }}
-                onClick={() => {
-                    form.resetFields();
-                }}
-            >
-                Clear
+                Get
             </Button>
 
             <Divider />
