@@ -8,6 +8,7 @@ import './style.less';
 
 const { SubMenu } = Menu;
 
+/* 根据pid把平级结构转正children 层级结构*/
 function initMenuDatas(menus, pid = 0) {
     let arr = [];
 
@@ -29,7 +30,7 @@ function initMenuDatas(menus, pid = 0) {
     return arr;
 }
 
-/* 初始化菜单 */
+/* 菜单组件 */
 export default function(props: any) {
     const { location } = props;
     let defaultSelectedKeys = [];
@@ -67,7 +68,8 @@ export default function(props: any) {
         return arr;
     };
 
-    let m = () => {
+    /* 目前只支持两级或者一级结构 */
+    let renderMenu = () => {
         let arr = [];
 
         arrMenuDatas.map((d: menuDatas) => {
@@ -99,7 +101,7 @@ export default function(props: any) {
             defaultSelectedKeys={defaultSelectedKeys}
             defaultOpenKeys={defaultOpenKeys}
         >
-            {m()}
+            {renderMenu()}
         </Menu>
     );
 }

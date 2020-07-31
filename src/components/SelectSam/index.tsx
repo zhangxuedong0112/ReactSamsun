@@ -9,20 +9,24 @@ const { Option } = Select;
 */
 export interface SelectProps {
     [key: string]: any;
-    dataSource: any | Function;
-    linkage?: any;
+    dataSource:
+        | any
+        | Function /* 可使用数组或一个返回promise的函数 ， 参考 pages/searchPage*/;
+    linkage?: any /* 级联重新生成元素,参考 pages/searchPage  */;
+    antdProps?: any /* antd 其他参数可自己传入 */;
 }
 
 export interface OptionDatas {
-    text: string;
-    value: string;
-    selected: boolean;
+    text: string /* 用户看到 */;
+    value: string /* 后端交互内容 */;
+    selected: boolean /* 是否选中 */;
 }
 
+/* 下拉，支持级联下拉->需要在FormSam 组件中使用才兼容 */
 const SelectSam: React.FC<SelectProps> = props => {
     const [ops, setOps] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { dataSource, linkage } = props;
+    const { dataSource, linkage, antdProps = {} } = props;
     let isLive = true;
 
     /* 默认属性 */
@@ -33,12 +37,15 @@ const SelectSam: React.FC<SelectProps> = props => {
         style: { width: '100%' },
         placeholder: 'Please Select',
         optionFilterProp: 'children',
+        linkage: props.linkage,
+        ...antdProps,
         ...props,
     };
 
     /* 清理垃圾 */
     delete defaultOps.dataSource;
     delete defaultOps.linkage;
+    delete defaultOps.antdProps;
 
     useEffect(() => {
         initOps();

@@ -34,6 +34,7 @@
     "lodash-decorators": "^6.0.1",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.3",
+    "moment": "^2.27.0",
     "nprogress": "^0.2.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
