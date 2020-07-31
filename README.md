@@ -30,6 +30,7 @@ $ yarn build
 ```
 
 本地测试打包后文件
+
 ```
 <!-- 安装serve -->
 $ yarn add -g serve
@@ -52,8 +53,11 @@ $ yarn start:uat
 ```
 
 获取多环境参数
+
 ``` tsx
 const { REACT_APP_ENV } = process.env;
 ```
 
+### 目录介绍
 
+![avatar](/md/imgs/directory.jpg)
