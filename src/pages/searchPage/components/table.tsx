@@ -7,7 +7,6 @@ const Table: React.FC = observer(props => {
         <>
             <div className="search-result-list">
                 <p>Search Result List</p>
-                <p>{JSON.stringify(Stroe.searchForm)}</p>
             </div>
         </>
     );

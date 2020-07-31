@@ -4,7 +4,7 @@ import FormSam, { FormDatasProps } from '@/components/FormSam';
 import { Input, Form, DatePicker } from 'antd';
 import SelectSam from '@/components/SelectSam';
 import Store from '@/pages/searchPage/stores';
-import moment from 'moment';
+import Message from '@/components/message';
 
 const Search: React.FC = props => {
     let [form] = Form.useForm();
@@ -184,6 +184,8 @@ const Search: React.FC = props => {
                             let ds = await validateFields();
 
                             Store.setSearchForm(ds);
+
+                            Message.success(JSON.stringify(ds));
                         } catch (error) {
                             console.error(error);
                         }

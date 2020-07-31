@@ -4,8 +4,8 @@ import { Row, Col, Form, Button, Divider } from 'antd';
 import WangEditor from '@/components/WangEditor';
 import Infinity from '@/components/Intensify';
 import store from '../store';
-import Notification from '@/utils/notification';
-import Message from '@/utils/message';
+import Notification from '@/components/notification';
+import Message from '@/components/message';
 
 /* 使用mobx */
 const Editor: React.FC<any> = Infinity([observer], props => {
