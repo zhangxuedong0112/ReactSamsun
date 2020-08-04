@@ -7,6 +7,7 @@
 - React Hook 推荐使用
     - [文档](https://react.docschina.org/docs/hooks-intro.html)
 - mobx 状态管理
+- typeScript
 - axios request请求
 
 ### 开始使用
