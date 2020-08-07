@@ -16,7 +16,7 @@ import { Debounce } from 'lodash-decorators';
 import * as React from 'react';
 import { fromEvent, Subscription } from 'rxjs';
 import { Action, IActionProps } from '../action';
-import './style.scss';
+import './style.less';
 // 设置企业 key
 LicenseManager.setLicenseKey(
     'SHI_UK_on_behalf_of_Lenovo_Sweden_MultiApp_1Devs6_November_2019__MTU3Mjk5ODQwMDAwMA==e27a8fba6b8b1b40e95ee08e9e0db2cb',

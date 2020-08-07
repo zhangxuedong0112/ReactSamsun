@@ -1,3 +1,5 @@
+import '@/style/base.less';
+
 // import React from 'react';
 // import {userStore} from "@/store"
 // import { history } from 'umi';

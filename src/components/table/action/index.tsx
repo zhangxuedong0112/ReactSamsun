@@ -40,7 +40,7 @@ export class Action extends React.Component<IActionProps, any> {
                 <Button icon="filter" type="link"></Button>
             </Dropdown>} */}
                 <Divider type="vertical" />
-                <Fullscreen FullscreenBody={this.props.fullscreenBody} />
+                {/* <Fullscreen FullscreenBody={this.props.fullscreenBody} /> */}
             </>
         );
         // 函数

@@ -1,23 +1,21 @@
 import React, { useEffect } from 'react';
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
-import { AgGrid, IAgGridProps } from '@/components/table';
-import {
-    SelectionChangedEvent,
-    GridApi,
-    GridReadyEvent,
-    CellEditingStoppedEvent,
-    ColumnApi,
-} from 'ag-grid-community';
-import { BindAll, Debounce } from 'lodash-decorators';
+import { AgGrid } from '@/components/table';
+import Action from './action';
+import TablePage from '@/store/agGrid';
+
+import { GridApi, GridReadyEvent, ColumnApi } from 'ag-grid-community';
+import { Debounce } from 'lodash-decorators';
 
 interface GrideProps {
-    store?: any /* table store */;
+    store: TablePage /* table store */;
     usePage?: boolean /* 分页， 默认true */;
     disabled?: boolean /* 禁用， 默认false */;
     checkboxSelection?: boolean /* 复选框, 默认true */;
     key?: string /* key */;
     tableName?: string /* table 名称 */;
+    actionObj?: any;
 }
 
 /* 
@@ -33,6 +31,7 @@ const AgGridTable: React.FC<GrideProps> = observer(props => {
         checkboxSelection = true,
         key = '',
         tableName = '',
+        actionObj = null,
     } = props;
 
     useEffect(() => {}, []);
@@ -108,11 +107,11 @@ const AgGridTable: React.FC<GrideProps> = observer(props => {
             suppressRowClickSelection={true}
             gridAutoHeight
             onFirstDataRendered={event => {}}
-            // actions={<Action {...this.props}/>}
+            actions={<Action {...props} />}
             // 右侧 动作列表菜单
             // dropdown={Action.DropdownAction}
             // 分页配置 https://ant.design/components/pagination-cn/
-            paginationProps={paginationProps || null}
+            paginationProps={usePage ? paginationProps : null}
             // 选择的 数据
             onSelectionChanged={onSelectionChanged}
             // onRowDoubleClicked={this.props.onRowDoubleClicked || this.onDefault}

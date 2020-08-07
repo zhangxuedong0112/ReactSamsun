@@ -43,7 +43,7 @@ export class AgGrid extends React.Component<IAgGridProps, any> {
     /**
      * 全屏 容器
      */
-    refFullscreen = React.createRef<HTMLDivElement>();
+    // refFullscreen = React.createRef<HTMLDivElement>();
     render() {
         let {
             actions,
@@ -55,15 +55,15 @@ export class AgGrid extends React.Component<IAgGridProps, any> {
         return (
             <React.Suspense fallback={<div></div>}>
                 <div
-                    className="lenovo-collapse-refFullscreen"
-                    ref={this.refFullscreen}
+                // className="lenovo-collapse-refFullscreen"
+                // ref={this.refFullscreen}
                 >
                     <Action
                         actions={actions}
                         actionsRight={actionsRight}
                         actionsHide={actionsHide}
                         dropdown={dropdown}
-                        fullscreenBody={() => this.refFullscreen}
+                        // fullscreenBody={() => this.refFullscreen}
                     />
                     <Table {...props} />
                 </div>
