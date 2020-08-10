@@ -206,15 +206,15 @@ const actionObj = {
 /* 分页数据规范 */
 // 请求参数
 {
-	"filter":{ // 搜索条件
-		"[key]":"[value]"
-	},
-	"pagination":{
-		"order":"desc,asc",  //排序方式
-		"field":"name,age",  //排序字段
-		"current":1, //当前页码
-		"pageSize":10, //每页条数
-	}
+    "filter":{ // 搜索条件
+        "[key]":"[value]"
+    },
+    "pagination":{
+        "order":"desc,asc",  //排序方式
+        "field":"name,age",  //排序字段
+        "current":1, //当前页码
+        "pageSize":10, //每页条数
+    }
 }
 // 返回格式
 {
