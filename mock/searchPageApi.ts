@@ -1,6 +1,33 @@
 import Mock from 'mockjs';
 
 export default {
+    'POST /api/table/import': (req, res) => {
+        res.send(
+            Mock.mock({
+                code: 200,
+                msg: 'msg',
+                data: {},
+            }),
+        );
+    },
+    'POST /api/table/delete': (req, res) => {
+        res.send(
+            Mock.mock({
+                code: 200,
+                msg: 'msg',
+                data: {},
+            }),
+        );
+    },
+    'POST /api/table/save': (req, res) => {
+        res.send(
+            Mock.mock({
+                code: 200,
+                msg: 'msg',
+                data: {},
+            }),
+        );
+    },
     'POST /api/table/search': (req, res) => {
         const {
             body: { pagination },

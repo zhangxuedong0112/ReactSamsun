@@ -57,9 +57,16 @@ export function useMenuDatas(uid?: any): any {
         {
             id: 303,
             pid: 300,
-            label: 'searchDemo',
-            link: '/searchPage',
+            label: 'searchDemoAG',
+            link: '/searchPageAG',
             icon: 'FileSearchOutlined',
+        },
+        {
+            id: 304,
+            pid: 300,
+            label: 'searchPageAntd',
+            link: '/searchPageAntd',
+            icon: 'TableOutlined',
         },
 
         {

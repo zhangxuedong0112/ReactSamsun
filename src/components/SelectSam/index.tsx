@@ -35,6 +35,7 @@ const SelectSam: React.FC<SelectProps> = props => {
         allowClear: true,
         showArrow: true,
         style: { width: '100%' },
+        size: 'small',
         placeholder: 'Please Select',
         optionFilterProp: 'children',
         linkage: props.linkage,
@@ -65,7 +66,7 @@ const SelectSam: React.FC<SelectProps> = props => {
             } else if (Array.isArray(dataSource)) {
                 opDatas = dataSource;
             }
-
+            console.log('@@@@@@opDatas', opDatas, typeof dataSource);
             isLive && setOps(opDatas);
         } catch (error) {
             console.error(error);

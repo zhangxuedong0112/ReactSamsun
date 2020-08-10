@@ -1,5 +1,5 @@
 import React from 'react';
-import Stroe from '@/pages/searchPage/stores';
+import Stroe from '@/pages/searchPageAG/stores';
 import { observer } from 'mobx-react';
 import AgGridTable from '@/components/agGridTable';
 import store from '../stores';
@@ -21,10 +21,11 @@ const Table: React.FC = observer(props => {
             store.onAddRow(obj);
         },
         save: async () => {
-            store.saveTable(null, {});
+            console.log(toJS(store.changedTableList));
+            store.saveTable();
         },
         remove: () => {
-            console.log('!!!!!!!!', store.selectedRowData);
+            console.log('!!!!!!!!remove', store.selectedRowData);
             return {
                 delete: () => {
                     store.onDelete(store.selectedRowData, null, {});

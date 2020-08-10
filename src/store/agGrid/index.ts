@@ -1,10 +1,9 @@
 import lodash from 'lodash';
 import { BindAll } from 'lodash-decorators';
 import { computed, observable, runInAction, toJS, action } from 'mobx';
-import { map } from 'rxjs/operators';
 import request from '@/service/req';
 import { Help } from '@/utils/helps';
-import { notification } from 'antd';
+import Message from '@/components/message';
 
 interface IUrl {
     url: string;
@@ -482,9 +481,9 @@ export default class TablePage {
                     }
                 });
                 if (params.length == 0 || notEmptyName.length > 0) {
-                    notification.warning({
-                        message: `${notEmptyName.join(',')} can not be empty!`,
-                    });
+                    Message.warning(
+                        `${notEmptyName.join(',')} can not be empty!`,
+                    );
                     throw `${notEmptyName.join(',')} can not be empty!`;
                     return false;
                 }
@@ -538,9 +537,9 @@ export default class TablePage {
                     }
                 });
                 if (params.length == 0 || notEmptyName.length > 0) {
-                    notification.warning({
-                        message: `${notEmptyName.join(',')} can not be empty!`,
-                    });
+                    Message.warning(
+                        `${notEmptyName.join(',')} can not be empty!`,
+                    );
                     throw `${notEmptyName.join(',')} can not be empty!`;
                     return false;
                 }
@@ -564,8 +563,7 @@ export default class TablePage {
             }
             let res = await request.ajax(reqParams);
 
-            closeNotification ||
-                notification.success({ message: 'Save Success' });
+            closeNotification || Message.success('Save Success');
             if (this.hasPagination) {
                 await this.onSearch({
                     ...this.filterParams,
@@ -656,11 +654,10 @@ export default class TablePage {
                 // this.changedTableList = []
                 this.selectedRowData = [];
 
-                notification.success({ message });
+                Message.success(message);
                 this.initTierNo();
             } else {
-                notification.error({ message: res.message });
-                // notification.error({ message: res.message })
+                Message.error(res.message);
             }
 
             if (

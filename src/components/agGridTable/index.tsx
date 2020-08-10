@@ -7,6 +7,7 @@ import TablePage from '@/store/agGrid';
 
 import { GridApi, GridReadyEvent, ColumnApi } from 'ag-grid-community';
 import { Debounce } from 'lodash-decorators';
+import Framework from './framework';
 
 interface GrideProps {
     store: TablePage /* table store */;
@@ -33,8 +34,6 @@ const AgGridTable: React.FC<GrideProps> = observer(props => {
         tableName = '',
         actionObj = null,
     } = props;
-
-    console.log('@@@@@@@@@', store && toJS(store.tableList));
 
     useEffect(() => {}, []);
 
@@ -123,7 +122,7 @@ const AgGridTable: React.FC<GrideProps> = observer(props => {
             rowSelection="multiple"
             // 编辑列 https://www.ag-grid.com/javascript-grid-cell-editing/#example-cell-editing
             defaultColDef={{
-                editable: disabled,
+                editable: !disabled,
                 resizable: true,
                 sortable: true,
                 minWidth: 160,
@@ -135,7 +134,7 @@ const AgGridTable: React.FC<GrideProps> = observer(props => {
             onGridReady={onGridReady}
             columnDefs={store && toJS(store.columns)}
             rowData={store && toJS(store.tableList)}
-            // frameworkComponents={{ ...Framework }}
+            frameworkComponents={{ ...Framework }}
         ></AgGrid>
     );
 });

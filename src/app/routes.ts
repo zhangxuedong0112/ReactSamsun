@@ -1,7 +1,5 @@
 const { REACT_APP_ENV } = process.env;
 
-console.log('@@@@@@@@@@', REACT_APP_ENV);
-
 const routes = [
     { exact: true, path: '/login', component: '@/pages/login' },
 
@@ -16,8 +14,13 @@ const routes = [
             { exact: true, path: '/editor', component: '@/pages/editor' },
             {
                 exact: true,
-                path: '/searchPage',
-                component: '@/pages/searchPage',
+                path: '/searchPageAG',
+                component: '@/pages/searchPageAG',
+            },
+            {
+                exact: true,
+                path: '/searchPageAntd',
+                component: '@/pages/searchPageAntd',
             },
 
             { component: '@/pages/404' },
