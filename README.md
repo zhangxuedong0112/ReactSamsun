@@ -186,7 +186,7 @@ const actionObj = {
             // console.log(obj)
             return obj;
         },
-        search: () => {
+        search: () => {/* 上传之后调用，可不传 */
             store.onSearch(store.filterParams);
         },
     },
