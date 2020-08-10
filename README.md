@@ -160,7 +160,7 @@ interface GrideProps {
 	},
 	"pagination":{
 		"order":"desc,asc",  //排序方式
-	    "field":"name,age",  //排序字段
+		"field":"name,age",  //排序字段
 		"current":1, //当前页码
 		"pageSize":10, //每页条数
 	}
