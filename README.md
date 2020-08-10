@@ -225,7 +225,7 @@ const actionObj = {
         "pageSize":10, // 每页条数
         "current":1, //当前页码
         "dataSource":[] // 数据数组
-  }
+    }
 }
 
 
