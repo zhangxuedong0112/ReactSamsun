@@ -15,6 +15,8 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import UploadDialog from '@/components/uploadDialog';
 import { isFunction } from 'lodash';
+import Message from '@/components/message';
+
 import {
     CaretRightOutlined,
     PlusCircleOutlined,
@@ -32,7 +34,7 @@ export default class PageAction extends React.Component<any, any> {
      * 删除
      */
     onDelete() {
-        let res = this.props.actionObj['remove']();
+        let res = this.props.actionObj['remove'];
         if (res.length > 0) {
             Modal.confirm({
                 title: `Are you  sure to delet ${res.length} records?`,
@@ -42,9 +44,7 @@ export default class PageAction extends React.Component<any, any> {
                 onCancel() {},
             });
         } else {
-            Modal.info({
-                title: `Please select data to delete`,
-            });
+            Message.warning(`Please select data to delete !`);
         }
     }
 

@@ -448,6 +448,7 @@ export default class TablePage {
         try {
             let params = saveAll ? this.tableList : this.changedTableList;
             if (params.length == 0) {
+                Message.warning('');
                 throw 'table data is empty';
                 return false;
             }

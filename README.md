@@ -171,14 +171,11 @@ const actionObj = {
         console.log(toJS(store.changedTableList));
         store.saveTable();
     },
-    remove: () => {
-        console.log('!!!!!!!!remove', store.selectedRowData);
-        return {
-            delete: () => {
-                store.onDelete(store.selectedRowData, null, {});
-            },
-            length: [...store.selectedRowData].length,
-        };
+    remove: {
+        delete: () => {
+            store.onDelete(store.selectedRowData, null, {});
+        },
+        length: [...store.selectedRowData].length,
     },
     upload: {
         upload: () => {

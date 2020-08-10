@@ -3,7 +3,7 @@ import Button from 'antd/es/button/button';
 import FormSam, { FormDatasProps } from '@/components/FormSam';
 import { Input, Form, DatePicker } from 'antd';
 import SelectSam from '@/components/SelectSam';
-import Store from '@/pages/searchPageAG/stores';
+import Store from '@/pages/searchPageAntd/stores';
 import Message from '@/components/message';
 
 const Search: React.FC = props => {
