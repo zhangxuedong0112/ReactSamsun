@@ -152,6 +152,60 @@ interface GrideProps {
 }
 
 
+/* table 上边各摁扭事件 */
+const actionObj = {
+    add: async () => {
+        // console.log("add")
+
+        let columns = [...store.columns];
+        let obj = {};
+
+        columns.map(item => {
+            obj[item.field] = '';
+        });
+
+        console.log('add', obj);
+        store.onAddRow(obj);
+    },
+    save: async () => {
+        console.log(toJS(store.changedTableList));
+        store.saveTable();
+    },
+    remove: () => {
+        console.log('!!!!!!!!remove', store.selectedRowData);
+        return {
+            delete: () => {
+                store.onDelete(store.selectedRowData, null, {});
+            },
+            length: [...store.selectedRowData].length,
+        };
+    },
+    upload: {
+        upload: () => {
+            let obj = {
+                data: {},
+                action: store.getUploadUrl(),
+            };
+            // console.log(obj)
+            return obj;
+        },
+        search: () => {
+            store.onSearch(store.filterParams);
+        },
+    },
+    download: () => {
+        const data = toJS(store.filterParams);
+        store.onExport(data);
+    },
+    downloadTemplate: () => {
+        const data = toJS(store.filterParams);
+        store.downloadTemplate(data);
+    },
+};
+
+/* 使用组件 */
+<AgGridTable store={store} actionObj={actionObj} />
+
 /* 分页数据规范 */
 // 请求参数
 {
