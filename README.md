@@ -62,3 +62,120 @@ const { REACT_APP_ENV } = process.env;
 ### 目录介绍
 
 ![](./md/imgs/directory1.jpg)
+
+### 组件
+
+- FormSam
+    - form 表单
+    - antd Form 二次封装
+    - 使用参考 pages/searchPage
+
+``` jsx
+
+/* 入参 */
+export interface FormSamProps {
+    // initialValues: any /* 初始化对象 */;
+    datas: FormDatasProps[] /* 需要渲染的组件对象 */;
+    getForm?: Function /* 返回当前form对象进行绑定，可不传 */;
+    fold?: boolean /* 是否显示折叠 */;
+    columnNum?: any /* 列数 默认3列 */;
+    antdProps?: any /* antd 其他参数可自己传入 */;
+    [key: string]: any /* 其他 */;
+}
+
+export interface FormDatasProps {
+    name: any /* 跟后台数据绑定的key */;
+    label?: any /* 用户看到的title */;
+    component: any /* 组件 */;
+    rules?: any /* 校验 */;
+    linkage?: Function /* 级联下拉关联父节点*/;
+}
+
+/*  
+    对form 表单进行封装; 
+    demo 参考 pages/searchPage; 
+    支持下拉级联
+*/
+const FormSam: React.FC<FormSamProps> = props => {
+    /* ... */
+}
+```
+
+
+- SelectSam
+    - antd Select 二次封装，带级联功能
+    - 级联依赖 FormSam 组件, agTable里边级联不需要，参考 pages/searchPageAG
+
+``` jsx
+/* 
+    入参
+*/
+/* 
+    dataSource 可使用数组 OptionDatas[]
+               可使用方法，返回promise
+*/
+export interface SelectProps {
+    [key: string]: any;
+    dataSource:
+        | any
+        | Function /* 可使用数组或一个返回promise的函数 ， 参考 pages/searchPageAG*/;
+    linkage?: any /* 级联重新生成元素,参考 pages/searchPageAG  */;
+    antdProps?: any /* antd 其他参数可自己传入 */;
+}
+
+export interface OptionDatas {
+    text: string /* 用户看到 */;
+    value: string /* 后端交互内容 */;
+    selected: boolean /* 是否选中 */;
+}
+
+/* 下拉，支持级联下拉->需要在FormSam 组件中使用才兼容 */
+const SelectSam: React.FC<SelectProps> = props => {
+    /* ... */
+}
+```
+
+- agGridTable
+    - 联想agGridTable 封装
+    - demo 参考 pages/searchPageAG 
+
+``` jsx
+/* 入参 */
+interface GrideProps {
+    store: TablePage /* table store */;
+    usePage?: boolean /* 分页， 默认true */;
+    disabled?: boolean /* 禁用， 默认false */;
+    checkboxSelection?: boolean /* 复选框, 默认true */;
+    key?: string /* key */;
+    tableName?: string /* table 名称 */;
+    actionObj?: any;
+}
+
+
+/* 分页数据规范 */
+// 请求参数
+{
+	"filter":{ // 搜索条件
+		"[key]":"[value]"
+	},
+	"pagination":{
+		"order":"desc,asc",  //排序方式
+	    "field":"name,age",  //排序字段
+		"current":1, //当前页码
+		"pageSize":10, //每页条数
+	}
+}
+// 返回格式
+{
+  "code":200,
+  "msg":"msg",
+  "data":{
+        "total":99, // 数据总数
+        "pageSize":10, // 每页条数
+        "current":1, //当前页码
+        "dataSource":[] // 数据数组
+  }
+}
+
+
+```
