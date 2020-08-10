@@ -34,6 +34,8 @@ const AgGridTable: React.FC<GrideProps> = observer(props => {
         actionObj = null,
     } = props;
 
+    console.log('@@@@@@@@@', store && toJS(store.tableList));
+
     useEffect(() => {}, []);
 
     /**

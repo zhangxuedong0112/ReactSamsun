@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from 'antd/es/button/button';
 import FormSam, { FormDatasProps } from '@/components/FormSam';
 import { Input, Form, DatePicker } from 'antd';
@@ -10,6 +10,16 @@ const Search: React.FC = props => {
     let [form] = Form.useForm();
 
     const { getFieldsValue, validateFields, getFieldValue } = form;
+
+    useEffect(() => {
+        Search();
+    }, []);
+
+    const Search = async () => {
+        let ds = await validateFields();
+
+        Store.onSearch(ds);
+    };
 
     const SearchDatas: FormDatasProps[] = [
         {
@@ -177,21 +187,7 @@ const Search: React.FC = props => {
                 }
             >
                 {/* 自定义子组件 */}
-                <Button
-                    type="primary"
-                    htmlType="submit"
-                    onClick={async () => {
-                        try {
-                            let ds = await validateFields();
-
-                            Store.setSearchForm(ds);
-
-                            Message.success(JSON.stringify(ds));
-                        } catch (error) {
-                            console.error(error);
-                        }
-                    }}
-                >
+                <Button type="primary" htmlType="submit" onClick={Search}>
                     Search
                 </Button>
 

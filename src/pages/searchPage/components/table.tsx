@@ -17,12 +17,14 @@ const Table: React.FC = observer(props => {
                 obj[item.field] = '';
             });
 
+            console.log('add', obj);
             store.onAddRow(obj);
         },
         save: async () => {
             store.saveTable(null, {});
         },
         remove: () => {
+            console.log('!!!!!!!!', store.selectedRowData);
             return {
                 delete: () => {
                     store.onDelete(store.selectedRowData, null, {});

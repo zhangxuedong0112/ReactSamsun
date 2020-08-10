@@ -17,6 +17,7 @@ import * as React from 'react';
 import { fromEvent, Subscription } from 'rxjs';
 import { Action, IActionProps } from '../action';
 import './style.less';
+import { LoadingOutlined } from '@ant-design/icons';
 // 设置企业 key
 LicenseManager.setLicenseKey(
     'SHI_UK_on_behalf_of_Lenovo_Sweden_MultiApp_1Devs6_November_2019__MTU3Mjk5ODQwMDAwMA==e27a8fba6b8b1b40e95ee08e9e0db2cb',
@@ -205,7 +206,13 @@ class Table extends React.Component<ITableProps, any> {
                     }}
                     className={`lenovo-ag-grid ${className} ${theme}`}
                 >
-                    <Spin spinning={loading}>
+                    <Spin
+                        spinning={loading}
+                        tip="Loading..."
+                        indicator={
+                            <LoadingOutlined style={{ fontSize: 24 }} spin />
+                        }
+                    >
                         <AgGridReact
                             suppressNoRowsOverlay
                             suppressLoadingOverlay
@@ -277,7 +284,7 @@ class Table extends React.Component<ITableProps, any> {
                         showTotal={(total, range) =>
                             `${range[0]}-${range[1]} of ${total} items`
                         }
-                        pageSizeOptions={['10', '40', '70', '100']}
+                        pageSizeOptions={['10', '20', '50', '100']}
                         defaultPageSize={10}
                         {...paginationProps}
                     />

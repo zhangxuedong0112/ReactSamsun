@@ -91,7 +91,7 @@ export default class TablePage {
     private _loadingTable = true;
     // 表格数据
     @observable
-    private _tableList;
+    private _tableList: any[] = [];
     // 表格分页
     @observable
     private _pagination = {
@@ -113,7 +113,7 @@ export default class TablePage {
     private _filterParams;
     // 选择的行 数据
     @observable
-    private _selectedRowData: any[];
+    private _selectedRowData: any[] = [];
     @observable
     private _selectedRowKeys: string[];
 
@@ -346,11 +346,6 @@ export default class TablePage {
      */
     @action
     onAddRow(newData) {
-        // console.log(ProgramInfo.dataGroup)
-        // let startDate = ProgramInfo.dataGroup["programStartDate"] ? moment(ProgramInfo.dataGroup["programStartDate"]).format("MM/DD/YYYY") : moment().format("MM/DD/YYYY")
-        // let endDate = ProgramInfo.dataGroup["programEndDate"] ? moment(ProgramInfo.dataGroup["programEndDate"]).format("MM/DD/YYYY") : moment().format("MM/DD/YYYY")
-        // lodash.update(newData, "startDate", () => startDate)
-        // lodash.update(newData, "endDate", () => endDate)
         newData.key = Help.GUID();
         let dataSource = this.tableList || [];
         dataSource.push(newData);

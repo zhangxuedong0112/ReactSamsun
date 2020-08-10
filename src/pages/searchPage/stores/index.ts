@@ -4,13 +4,38 @@ import agGrid from '@/store/agGrid';
 export class SearchPageStore extends agGrid {
     constructor() {
         super({
-            Target: '/api', //默认 /api
-            Apis: {},
+            Apis: {
+                search: {
+                    //查询
+                    url: '/table/search',
+                    method: 'post',
+                },
+            },
             columns: [
                 {
-                    headerName: 'Item No',
-                    field: 'itemNo',
-                    key: 'itemNo',
+                    headerName: 'ID',
+                    field: 'id',
+                    key: 'id',
+                },
+                {
+                    headerName: 'Name',
+                    field: 'name',
+                    key: 'name',
+                },
+                {
+                    headerName: 'City',
+                    field: 'city',
+                    key: 'city',
+                },
+                {
+                    headerName: 'Email',
+                    field: 'email',
+                    key: 'email',
+                },
+                {
+                    headerName: 'Date',
+                    field: 'date',
+                    key: 'date',
                 },
             ],
         });
