@@ -1,7 +1,7 @@
 import React from 'react';
 import Stroe from '@/pages/searchPageAG/stores';
 import { observer } from 'mobx-react';
-import AgGridTable from '@/components/agGridTable';
+import AntdTable from '@/components/antdTable';
 import store from '../stores';
 import { toJS } from 'mobx';
 
@@ -56,7 +56,7 @@ const Table: React.FC = observer(props => {
     return (
         <>
             <div>
-                <AgGridTable store={store} actionObj={actionObj} />
+                <AntdTable store={store} actionObj={actionObj} />
             </div>
         </>
     );
