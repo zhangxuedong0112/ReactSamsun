@@ -36,7 +36,7 @@ $ yarn build
 <!-- 安装serve -->
 $ yarn add -g serve
 
-<!-- 检测某个文件夹 -->
+<!-- 监测某个文件夹 -->
 $ server ./dist
 ```
 
