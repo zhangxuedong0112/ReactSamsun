@@ -42,16 +42,6 @@ const AntdTable: React.FC<AntdProps> = observer(props => {
         onShowSizeChange: onChangePagination,
     };
 
-    /**
-     * 选择的 行 数据 回调
-     * @param event
-     */
-    const onSelectionChanged = event => {
-        let data = event.api.getSelectedRows();
-
-        store && store.changeSelectedRowData(data);
-    };
-
     return (
         <>
             <Table
