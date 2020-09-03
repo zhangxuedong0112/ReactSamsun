@@ -35,7 +35,7 @@ const SelectSam: React.FC<SelectProps> = props => {
         allowClear: true,
         showArrow: true,
         style: { width: '100%' },
-        size: 'small',
+        // size: 'small',
         placeholder: 'Please Select',
         optionFilterProp: 'children',
         linkage: props.linkage,
