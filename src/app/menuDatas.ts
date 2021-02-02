@@ -30,7 +30,7 @@ export function useMenuDatas(uid?: any): any {
             id: 200,
             pid: 0,
             label: '泡泡头拿出来',
-            link: '/user',
+            link: '/user2',
             icon: 'AliwangwangOutlined',
         },
 

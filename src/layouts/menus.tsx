@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { history } from 'umi';
 import { useMenuDatas, menuDatas } from '@/app/menuDatas';
+import SettingStore from '@/store/setting';
+import conf from '@/global.conf';
 import * as Icon from '@ant-design/icons';
 import _ from 'lodash';
 import './style.less';
@@ -41,6 +43,22 @@ export default function(props: any) {
     let arrMenuDatas = initMenuDatas(arrDatas);
 
     let custRouter: menuDatas = _.find(arrDatas, { link: location.pathname });
+
+    // let pRouter: menuDatas;
+    // if(custRouter.pid){
+    //     pRouter = _.find(arrDatas, { id: custRouter.pid });
+    // }
+
+    // try {
+    //     SettingStore.custRouter = {
+    //         custRouter,
+    //         pRouter
+    //     }
+    // } catch (error) {
+
+    // }
+
+    // console.log("@@@@location", custRouter)
 
     if (custRouter) {
         defaultSelectedKeys = [custRouter.id + ''];
@@ -97,9 +115,9 @@ export default function(props: any) {
     return (
         <Menu
             theme="dark"
-            mode="inline"
+            mode={conf.menu == 'top' ? 'horizontal' : 'inline'}
             defaultSelectedKeys={defaultSelectedKeys}
-            defaultOpenKeys={defaultOpenKeys}
+            defaultOpenKeys={conf.menu == 'top' ? [] : defaultOpenKeys}
         >
             {renderMenu()}
         </Menu>
