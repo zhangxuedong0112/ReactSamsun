@@ -60,8 +60,35 @@ const { REACT_APP_ENV } = process.env;
 ```
 
 ### 目录介绍
-
-![](./md/imgs/directory1.jpg)
+- config //umi配置文件
+- dist //打包后
+- md //markdown
+- mock //mock配置
+- src
+    - .umi //umi临时文件
+    - app //路由、菜单等
+        - menuDatas.ts //菜单配置
+        - routes.ts //路由
+    - components //公共组件
+    - layouts //布局
+        - index.tsx //入口，根据global.conf.ts->menu配置布局
+        - left.tsx //左右
+        - menus.tsx //菜单
+        - top.tsx //上中下
+    - locales //全球化
+    - pages //页面
+    - service //请求
+    - store //公共状态管理
+    - utils //工具
+    - app.tsx //umi运行时配置
+    - global.css //公共样式
+    - global.conf.ts //公共配置文件，例如：布局样式(左右/上中下)
+- .env
+- package.json
+- README.md
+- tsconfig.json
+- typings.d.ts
+<!-- ![](./md/imgs/directory1.jpg) -->
 
 ### 组件
 
